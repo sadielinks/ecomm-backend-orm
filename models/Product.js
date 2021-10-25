@@ -10,6 +10,43 @@ class Product extends Model {}
 Product.init(
   {
     // define columns
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    product_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      // validation
+      validate: {
+        isNumeric: true
+      }
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 10,
+      // validation
+      validate: {
+        isNumeric: true
+      }
+    },
+    category: {
+      type: DataTypes.INTEGER,
+      // is this allowed to be NULL?????? ******************************************
+      allowNull: false,
+      // reference 'Category' model 'id'
+      references: {
+        model: 'category',
+        key: 'id'
+      }
+    }
   },
   {
     sequelize,
