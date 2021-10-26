@@ -90,6 +90,8 @@ The technologies used to create this program were:
 
 - [Link]()
 
+- https://drive.google.com/drive/folders/1Q73SY0TiaKR0SS1sHMcOjcV2U-SoDEEh?usp=sharing
+
 - [GitHub Repository](https://github.com/sadielinks/employee-tracker-sql)
 
 <br>
