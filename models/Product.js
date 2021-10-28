@@ -39,7 +39,6 @@ Product.init(
     },
     category: {
       type: DataTypes.INTEGER,
-      // is this allowed to be NULL?????? ******************************************
       allowNull: false,
       // reference 'Category' model 'id'
       references: {
