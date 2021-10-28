@@ -7,17 +7,20 @@ const { Category, Product } = require('../../models');
 router.get('/', (req, res) => {
   // find all categories - findAll grabs from the whole db table
   // be sure to include its associated Products
-  Category.findAll(
-    {
-      include: [ 
+    Category.findAll({
+      include: [
         {
           model: Product,
-          attributes: ['product_name']
-      }
-    ]
-    }
-  )
-});
+          attributes: ['id', 'product_id', 'product_name', 'price', 'stock']
+        }
+      ]
+    })
+    .then(categoryData => res.json(categoryData))
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    });
+  });
 
 router.get('/:id', (req, res) => {
   // find one category by its `id` value - findByPk Student Act 6 - 'GET a 'single' x by its primary key'
