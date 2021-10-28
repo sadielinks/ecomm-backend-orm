@@ -20,8 +20,7 @@ ___
 
 ## Description <br>
 
-This is a WORK IN PROGRESS
-
+This is an application that allows the user to utilize a back-ended e-commerce site through Express.js API and Sequelize. These technologies interact with the website's MySQL database.
 
 
 ### User Story:
@@ -48,16 +47,42 @@ THEN I am able to successfully create, update, and delete data in my database
 
 ## Installation
 
-1. 
+1. Users will need to use `git clone` to clone this repo into their local drive.
 
+- HTTPS
 ```
+https://github.com/sadielinks/ecomm-backend-orm.git
+```
+- SSH
+```
+git@github.com:sadielinks/ecomm-backend-orm.git
 ```
 
-```
-```
+2. They will then need to install `npm i` into their command line in the repository's root folder.
 
 
 ## Usage
+
+1. After the installation process, users will then need to enter their schema using MySQL:
+
+```
+mysql -u root -p
+```
+
+2. Next, the seeds will need to be entered as well using:
+
+```
+node seeds/index.js
+```
+
+3. Once the console displays that the database has synched and the products, tags, and product tags have all been seeded they will need to invoke the application by starting their server using:
+
+```
+nodemon server.js
+```
+
+4. As this application is not deployed, users will then need to naviagate to Insomnia Core.
+
 
 
 ## Technologies
@@ -65,6 +90,7 @@ THEN I am able to successfully create, update, and delete data in my database
 The technologies used to create this program were: 
 - Javascript
 - Node.JS - Express.JS
+- Sequelize ORM
 - MySQL
 <br><br>
 
@@ -90,7 +116,7 @@ The technologies used to create this program were:
 
 - [Link]()
 
-- https://drive.google.com/drive/folders/1Q73SY0TiaKR0SS1sHMcOjcV2U-SoDEEh?usp=sharing
+- [Google Drive](https://drive.google.com/drive/folders/1Q73SY0TiaKR0SS1sHMcOjcV2U-SoDEEh?usp=sharing)
 
 - [GitHub Repository](https://github.com/sadielinks/employee-tracker-sql)
 
