@@ -39,8 +39,8 @@ router.get('/:id', (req, res) => {
           attributes: ['tag_name'],
           through: ProductTag,
         },
-      },
-    ],
+      }
+    ]
   })
   // search db for id matching catagory and if nothing is found....
     .then((categoryData) => {
@@ -53,13 +53,18 @@ router.get('/:id', (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
-    });
+    })
 });
 
 router.post('/', (req, res) => {
   // create a new category
-  
-});
+  Category.create(req.body)
+    .then(categoryData => res.json(categoryData))
+    .catch(err => {
+      console.log(err)
+      res.status(400).json(err)
+    })
+  });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
