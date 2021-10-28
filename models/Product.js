@@ -39,7 +39,6 @@ Product.init(
     },
     category: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       // reference 'Category' model 'id'
       references: {
         model: 'category',
