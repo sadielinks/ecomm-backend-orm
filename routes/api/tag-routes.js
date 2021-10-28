@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
         model: Product,
         attributes: ['id', 'product_name', 'price', 'stock'],
         through: ProductTag,
-      }
-    ]
+      },
+    ],
   })
-  .then(categoryData => res.json(categoryData))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  });
+    .then((categoryData) => res.json(categoryData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get('/:id', (req, res) => {
@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Product data
   Tag.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
     include: [
       // Product data
@@ -36,24 +36,28 @@ router.get('/:id', (req, res) => {
         model: Product,
         attributes: ['id', 'product_name', 'price', 'stock'],
         through: ProductTag,
-      }
-    ]
+      },
+    ],
   })
-  .then(categoryData => res.json(categoryData))
-  .catch(err => {
-    console.log(err)
-    res.status(404).json({message: 'There is no tag associated with this id, please try again.'});
-  });
+    .then((categoryData) => res.json(categoryData))
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(404)
+        .json({
+          message: 'There is no tag associated with this id, please try again.',
+        });
+    });
 });
 
 router.post('/', (req, res) => {
   // create a new tag
   Tag.create(req.body)
-  .then(categoryData => res.json(categoryData))
-  .catch(err => {
-    console.log(err)
-    res.status(400).json(err)
-  });
+    .then((categoryData) => res.json(categoryData))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
@@ -61,19 +65,24 @@ router.put('/:id', (req, res) => {
   Tag.update(req.body, {
     where: {
       id: req.params.id,
-    }
+    },
   })
-  .then(categoryData => {
-    if (!categoryData) {
-      res.status(404).json({message: 'There is no tag associated with this id, please try again.'})
-      return;
-    }
-    res.json(categoryData)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
+    .then((categoryData) => {
+      if (!categoryData) {
+        res
+          .status(404)
+          .json({
+            message:
+              'There is no tag associated with this id, please try again.',
+          });
+        return;
+      }
+      res.json(categoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
@@ -81,19 +90,24 @@ router.delete('/:id', (req, res) => {
   Tag.destroy({
     where: {
       id: req.params.id,
-    }
+    },
   })
-  .then(categoryData => {
-    if (!categoryData) {
-      res.status(404).json({message: 'There is no tag associated with this id, please try again.'})
-      return;
-    }
-    res.json(categoryData)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
+    .then((categoryData) => {
+      if (!categoryData) {
+        res
+          .status(404)
+          .json({
+            message:
+              'There is no tag associated with this id, please try again.',
+          });
+        return;
+      }
+      res.json(categoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

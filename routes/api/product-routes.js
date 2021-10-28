@@ -13,22 +13,22 @@ router.get('/', (req, res) => {
       // Category data
       {
         model: Category,
-        attributes: ['id', 'category_name']
+        attributes: ['id', 'category_name'],
       },
       // Tag data
       {
         model: Tag,
         attributes: ['id', 'tag_name'],
         through: ProductTag,
-        as: 'tags'
-      }
-    ]
+        as: 'tags',
+      },
+    ],
   })
-  .then(categoryData => res.json(categoryData))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  });
+    .then((categoryData) => res.json(categoryData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // get one product
@@ -37,40 +37,45 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Category and Tag data
   Product.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
     include: [
       // Category data
       {
         model: Category,
-        attributes: ['id', 'category_name']
+        attributes: ['id', 'category_name'],
       },
       // Tag data
       {
         model: Tag,
         attributes: ['id', 'tag_name'],
         through: ProductTag,
+      },
+    ],
+  })
+    .then((categoryData) => {
+      if (!categoryData) {
+        res
+          .status(404)
+          .json({
+            message:
+              'There is no product associated with this id, please try again.',
+          });
+        return;
       }
-    ]
-  })
-  .then(categoryData => {
-    if (!categoryData) {
-      res.status(404).json({message: 'There is no product associated with this id, please try again.'})
-      return;
-    }
-    res.json(categoryData)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err);
-  });
+      res.json(categoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
-      product_name: "Basketball",
+      product_name: 'Basketball',
       price: 200.00,
       stock: 3,
       tagIds: [1, 2, 3, 4]
@@ -145,19 +150,24 @@ router.delete('/:id', (req, res) => {
   Product.destroy({
     where: {
       id: req.params.id,
-    }
+    },
   })
-  .then(categoryData => {
-    if (!categoryData) {
-      res.status(404).json({message: 'There is no product associated with this id, please try again.'})
-      return;
-    }
-    res.json(categoryData)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
+    .then((categoryData) => {
+      if (!categoryData) {
+        res
+          .status(404)
+          .json({
+            message:
+              'There is no product associated with this id, please try again.',
+          });
+        return;
+      }
+      res.json(categoryData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
