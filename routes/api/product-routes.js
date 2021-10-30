@@ -52,12 +52,10 @@ router.get('/:id', (req, res) => {
   })
     .then((categoryData) => {
       if (!categoryData) {
-        res
-          .status(404)
-          .json({
-            message:
-              'There is no product associated with this id, please try again.',
-          });
+        res.status(404).json({
+          message:
+            'There is no product associated with this id, please try again.',
+        });
         return;
       }
       res.json(categoryData);
@@ -84,7 +82,7 @@ router.post('/', (req, res) => {
     price: req.body.price,
     stock: req.body.stock,
     category_id: req.body.category_id,
-    tagIds: req.body.tagIds
+    tagIds: req.body.tagIds,
   })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -158,12 +156,10 @@ router.delete('/:id', (req, res) => {
   })
     .then((categoryData) => {
       if (!categoryData) {
-        res
-          .status(404)
-          .json({
-            message:
-              'There is no product associated with this id, please try again.',
-          });
+        res.status(404).json({
+          message:
+            'There is no product associated with this id, please try again.',
+        });
         return;
       }
       res.json(categoryData);
